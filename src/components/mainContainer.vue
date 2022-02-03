@@ -1,14 +1,22 @@
 <template>
     <div class="main">
-        <div v-for="(film,index) in titlelists" :key="index" class="card">
-            <img :src="film.poster_path" alt="">
-            <span>{{film.title}}</span>
+        <div class="row">
+            <div v-for="(film,index) in titlelists" :key="index" class="card">
+                <div class="img-container">
+                    <img :src="firstImgPart+film.poster_path" alt="">
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
-<script>
+<script> 
 export default {
+    data(){
+        return{
+            firstImgPart: "https://image.tmdb.org/t/p/w342",
+        }
+    },
     props: {
         titlelists: Array,
     }
@@ -18,18 +26,30 @@ export default {
 <style lang="scss" scoped>
 
     .main{
-        height: calc(100vh - 100px);
-        background-color: grey;
-        display: flex;
-        flex-wrap: wrap;
-        width: 80%;
+       
+        width: 90%;
         margin: 20px auto;
 
-        .card{
+       .row{
+           gap: 15px;
+           justify-content: center;
+            .card{
             background-color: black;
-            width: 100px;
-            height: 200px;
+            width: calc((100% / 5) - 15px);
             color: white;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            word-break: break-word;
+
+            .img-container{
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
         }
+       }
     }
 </style>

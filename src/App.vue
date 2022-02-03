@@ -25,17 +25,15 @@ export default {
   methods: {
 
     createUrlFilm(inputResearch){
-      console.log('ciae');
       let string = "";
       string += "https://api.themoviedb.org/3/search/movie/";
-      string += "?query="+inputResearch;
+      string += "?query="+inputResearch.toLowerCase();
       string += "&api_key=89f7b6916ed41033676697af1254857e"
       this.urlFilm = string;
       this.getFilmsList();
 
     },
     getFilmsList(){
-          console.log('ciaone');
           axios.get(this.urlFilm).then((response) =>{
           this.filmsList = response.data.results; 
        })
