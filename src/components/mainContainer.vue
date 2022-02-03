@@ -9,7 +9,7 @@
                     <div>
                         <span>Titolo:</span>{{film.title}}
                     </div>
-                    <div>
+                    <div v-if="checkTitle(film.original_title,film.title)">
                         <span>Titolo originale:</span>{{film.original_title}}
                     </div>
                     <div>
@@ -28,11 +28,19 @@
 export default {
     data(){
         return{
-            firstImgPart: "https://image.tmdb.org/t/p/w342",
+            firstImgPart: "https://image.tmdb.org/t/p/w500",
         }
     },
     props: {
         titlelists: Array,
+    },
+    methods: {
+        checkTitle(originaltitle,title){
+            if(originaltitle != title){
+                return true;
+            }
+           
+        }
     }
 }
 </script>
@@ -41,7 +49,7 @@ export default {
 
     .main{
        
-        width: 90%;
+        width: 85%;
         margin: 20px auto;
 
        .row{
@@ -52,7 +60,7 @@ export default {
             background-color: black;
             width: calc((100% / 5) - 15px);
             color: white;
-            padding: 10px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -71,9 +79,12 @@ export default {
             }
 
             .img-container{
+                width: 100%;
+                height: 100%;
                 img{
                     width: 100%;
                     height: 100%;
+                    
                 }
             }
 
