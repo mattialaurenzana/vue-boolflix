@@ -29,6 +29,7 @@ export default {
     data(){
         return{
             firstImgPart: "https://image.tmdb.org/t/p/w500",
+            
         }
     },
     props: {
@@ -65,6 +66,8 @@ export default {
             flex-direction: column;
             align-items: center;
             word-break: break-word;
+            position: relative;
+            
 
             &:hover{
                 cursor: pointer;
@@ -89,8 +92,13 @@ export default {
             }
 
             .film-data{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
                 display: none;
                 font-size: 11px;
+                padding: 15px;
                 
 
                 div{

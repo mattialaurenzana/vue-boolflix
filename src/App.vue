@@ -1,7 +1,8 @@
 <template>
   <div id="app">
       <header-box @search="createUrlFilm"/>
-      <main-container :titlelists="filmsList"/>
+      <main-container :titlelists="filmsList"  v-if="showResults"/>
+      <advertising-box v-if="!showResults"/>
   </div>
 </template>
 
@@ -9,17 +10,20 @@
 import headerBox from './components/headerBox.vue'
 import mainContainer from './components/mainContainer.vue'
 import axios from 'axios'
+import advertisingBox from './components/advertisingBox.vue'
 
 export default {
   name: 'App',
   components: {
     headerBox,
-    mainContainer
+    mainContainer,
+    advertisingBox,
   },
   data(){
     return{
       filmsList: [],
       urlFilm: "",
+  
     }
   },
   methods: {
@@ -37,10 +41,18 @@ export default {
           axios.get(this.urlFilm).then((response) =>{
           this.filmsList = response.data.results; 
        })
-    }
-
-   
+    },
+    
   },
+  computed: {
+        showResults(){
+        if(this.filmsList.length != 0){
+        return true;
+      }else{
+        return false;
+      }
+    }
+  }
    
       
 }
