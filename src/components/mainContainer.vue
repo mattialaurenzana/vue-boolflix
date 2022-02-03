@@ -1,6 +1,7 @@
 <template>
     <div class="main">
         <div v-for="(film,index) in titlelists" :key="index" class="card">
+            <img :src="film.poster_path" alt="">
             <span>{{film.title}}</span>
         </div>
     </div>
