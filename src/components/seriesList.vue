@@ -16,7 +16,9 @@
                     </div>
                     <div>
                         <span>Lingua:</span>
-                        <img src="../../public/flags/US.png" alt="US flag">
+                        <div class="flag-container">
+                            <img :src="`/flags/${serie.original_language}.png`">
+                        </div>
                        
                     </div>
                     <div>
