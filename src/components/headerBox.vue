@@ -6,6 +6,7 @@
         <div class="input-container">
             <input type="text" v-model="inputResearch">
             <button @click="$emit('search',inputResearch)">Search</button>
+             
         </div>
     </header>
 </template>
@@ -41,6 +42,6 @@ export default {
             gap: 10px;
         }
 
-        
+    
     }
 </style>
