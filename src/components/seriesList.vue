@@ -22,7 +22,8 @@
                        
                     </div>
                     <div>
-                        <span>Voto:</span>{{serie.vote_average}}
+                        <span>Voto:</span>
+                        <i class="fas fa-star" v-for="(item,index) in stars[index]" :key="index"></i>
                     </div>
                 </div>
             </div>
@@ -38,6 +39,7 @@ export default {
     data(){
         return{
             firstImgPart: "https://image.tmdb.org/t/p/w500",
+            stars: [],
         }
     },
      methods: {
@@ -53,7 +55,19 @@ export default {
             }else{
                 return false;
             }
-        }
+        },
+            getStars(){
+                this.seriesList.forEach((item)=>{
+                    const array = [];
+                for(let i=0; i < (Math.ceil(item.vote_average / 2)); i++){
+                    array.push('star');
+                }
+                this.stars.push(array);
+                })
+            }
+    },
+    mounted(){
+        this.getStars();
     }
 }
 </script>
