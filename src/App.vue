@@ -2,7 +2,7 @@
   <div id="app">
       <header-box @search="search"/>
       <main-container :filmList="filmsList" :seriesList="seriesList" :mostPopular="mostPopular" :homePage="homePage" :topRated="topRated"/>
-      <!-- <advertising-box v-else/> -->
+      <advertising-box v-if="checkAdvertising"/> 
   </div>
 </template>
 
@@ -10,14 +10,14 @@
 import headerBox from './components/headerBox.vue'
 import mainContainer from './components/mainContainer.vue'
 import axios from 'axios'
-// import advertisingBox from './components/advertisingBox.vue'
+ import advertisingBox from './components/advertisingBox.vue'
 
 export default {
   name: 'App',
   components: {
     headerBox,
     mainContainer,
-    // advertisingBox,
+    advertisingBox,
   },
   data(){
     return{
@@ -93,7 +93,15 @@ export default {
       }else{
         return false;
       }
-    }
+    },
+    checkAdvertising(){
+      if(this.filmsList.length === 0 && this.seriesList.length === 0 && this.homePage === false){
+        return true;
+      }else{
+        return false;
+      }
+    },
+
   },
   mounted(){
     this.getMostPopular();

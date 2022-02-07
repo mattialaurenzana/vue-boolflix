@@ -23,7 +23,7 @@
                     </div>
                     <div>
                         <span>Voto:</span>
-                        <create-stars :vector="mostPopular"/>
+                        <create-stars :film="film"/>
                     </div>
                     <div>
                         <span>Overview: </span>{{film.overview}}

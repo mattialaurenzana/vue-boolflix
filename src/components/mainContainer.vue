@@ -1,8 +1,8 @@
 <template>
     <div class="main">
             <home-page :mostPopular="mostPopular" :topRated="topRated" v-if="homePage"/>
-            <film-list :listFilm="filmList"/>
-            <series-list :seriesList="seriesList"/>
+            <film-list :listFilm="filmList" v-else/>
+            <series-list :seriesList="seriesList" v-if="!homePage"/>
     </div>
 </template>
 

@@ -23,7 +23,8 @@
                     </div>
                     <div>
                         <span>Voto:</span>
-                        <i class="fas fa-star" v-for="(star,index) in getStars[index]" :key="index"></i>
+                        <create-stars :film="film"/>
+
                     </div>
                     <div>
                         <span>Overview: </span>{{film.overview}}
@@ -36,12 +37,16 @@
 </template>
 
 <script>
+import createStars from './createStars.vue'
 export default {
+
+    components: {
+        createStars,
+    },
 
     data(){
         return{
             firstImgPart: "https://image.tmdb.org/t/p/w500",
-            stars : [],
         }
     },
     props: {
@@ -63,21 +68,7 @@ export default {
         },
    
         },
-        computed: {
-                  getStars(){
 
-                 this.listFilm.forEach((item)=>{
-                    const array = [];
-                     for(let i=0; i < (Math.ceil(item.vote_average / 2)); i++){
-                        array.push('star');
-                }
-                this.stars.push(array);
-                
-                })
-                return this.stars;
-               
-            }
-        }
     
     }
 
