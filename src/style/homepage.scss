@@ -1,0 +1,130 @@
+.homepage{
+    padding: 15px;
+    width: 100%;
+    overflow-x: auto;
+    h1{
+        text-shadow: 3px 3px white;
+        margin-top: 30px;
+    }
+
+    .row{
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 15px;
+        overflow: auto;
+
+        .card{
+            background-color: black;
+            padding-left: 0;
+            padding-right: 0;
+            height: 350px;
+            width: 250px;
+            color: white;
+
+           
+            
+
+            &:hover{
+                cursor: pointer;
+
+                .img-container{
+                    img{
+                        display: none;
+                    }
+                }
+
+                .film-data{
+                    display: block;
+                }
+            }
+
+            .img-container{
+                height: 100%;
+                width: 100%;
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .film-data{
+                width: 100%;
+                height: auto;
+                position: absolute;
+                top: 0;
+                display: none;
+                font-size: 11px;
+                padding: 15px;
+               
+       
+               div{
+                   margin: 3px 0;
+       
+                   span{
+                       font-weight: bold;
+                       font-size: 13px;
+                       margin-right: 5px;
+                   }
+       
+                   .flag-container{
+                       display: inline-block;
+                       height: 15px;
+                       margin-left: 5px;
+           
+                         img{
+                             width: 100%;
+                             height: 100%;
+                         }
+                        
+                        
+                    }
+               } 
+                   
+       
+          
+                    
+                
+            }    .film-data{
+                width: 100%;
+                height: auto;
+                position: absolute;
+                top: 0;
+                display: none;
+                font-size: 11px;
+                padding: 15px;
+               
+       
+               div{
+                   margin: 3px 0;
+       
+                   span{
+                       font-weight: bold;
+                       font-size: 13px;
+                       margin-right: 5px;
+                   }
+       
+                   .flag-container{
+                       display: inline-block;
+                       height: 15px;
+                       margin-left: 5px;
+           
+                         img{
+                             width: 100%;
+                             height: 100%;
+                         }
+                        
+                        
+                    }
+               } 
+                   
+       
+          
+                    
+                
+            }
+        }
+    }
+    
+}

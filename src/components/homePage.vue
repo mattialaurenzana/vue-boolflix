@@ -1,16 +1,16 @@
 <template>
-  <div class="film-container">
-        <h1 v-if="showTitle()">Sezione Film</h1>
-        <div class="row">  
-            <div v-for="(film,index) in listFilm" :key="index" class="card">
+    <div class="homepage">
+        <h1>Popular film</h1>
+        <div class="row">
+            <div class="card" v-for="(film,index) in mostPopular" :key="index">
                 <div class="img-container">
-                    <img :src="firstImgPart+film.poster_path" alt="">
+                    <img :src="firstImgPart+film.poster_path">
                 </div>
-                <div class="film-data">
+                 <div class="film-data">
                     
-                       <div>
-                            <span>Titolo:</span>{{film.title}}
-                        </div>
+                    <div>
+                        <span>Titolo:</span>{{film.title}}
+                    </div>
                     <div v-if="checkTitle(film.original_title,film.title)">
                         <span>Titolo originale:</span>{{film.original_title}}
                     </div>
@@ -23,7 +23,7 @@
                     </div>
                     <div>
                         <span>Voto:</span>
-                        <i class="fas fa-star" v-for="(star,index) in getStars[index]" :key="index"></i>
+                        <create-stars :vector="mostPopular"/>
                     </div>
                     <div>
                         <span>Overview: </span>{{film.overview}}
@@ -32,41 +32,46 @@
                 </div>
             </div>
         </div>
-  </div>
+        <h1>Top rated film</h1>
+        <div class="row">
+            <div class="card" v-for="(film,index) in topRated" :key="index">
+                <div class="img-container">
+                    <img :src="firstImgPart+film.poster_path">
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
+ import createStars from './createStars.vue'
 export default {
-
-    data(){
-        return{
-            firstImgPart: "https://image.tmdb.org/t/p/w500",
-            stars : [],
-        }
+    components: {
+         createStars,
     },
-    props: {
-        listFilm: Array,
-    },
-     methods: {
-        checkTitle(originaltitle,title){
+    
+        props: {
+            mostPopular: Array,
+            topRated: Array,
+        },
+        data(){
+            return{
+                firstImgPart: "https://image.tmdb.org/t/p/w500",
+                stars: [],
+            }
+        },
+        methods:{
+             checkTitle(originaltitle,title){
             if(originaltitle != title){
                 return true;
             }
            
-        },
-        showTitle(){
-            if(this.listFilm.length != 0){
-                return true;
-            }else{
-                return false;
-            }
-        },
-   
+        }
         },
         computed: {
                   getStars(){
 
-                 this.listFilm.forEach((item)=>{
+                 this.mostPopular.forEach((item)=>{
                     const array = [];
                      for(let i=0; i < (Math.ceil(item.vote_average / 2)); i++){
                         array.push('star');
@@ -78,13 +83,9 @@ export default {
                
             }
         }
-    
-    }
-
-  
-
+}
 </script>
 
 <style lang="scss" scoped>
-    @import '../style/filmList.scss'
+    @import '../style/homepage.scss'
 </style>

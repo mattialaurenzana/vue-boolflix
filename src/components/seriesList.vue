@@ -1,5 +1,5 @@
 <template>
-     <div>
+     <div class="serie-container">
          <h1 v-if="showTitle()">Sezione Serie TV</h1>
          <div class="row">
          
@@ -9,21 +9,24 @@
                 </div>
                 <div class="film-data">
                     <div>
-                        <span>Titolo:</span>{{serie.name}}
+                        <span>Titolo: </span>{{serie.name}}
                     </div>
                     <div v-if="checkTitle(serie.original_name,serie.name)">
-                        <span>Titolo originale:</span>{{serie.original_name}}
+                        <span>Titolo originale: </span>{{serie.original_name}}
                     </div>
                     <div>
-                        <span>Lingua:</span>
+                        <span>Lingua:  </span>
                         <div class="flag-container">
                             <img :src="`/flags/${serie.original_language}.png`">
                         </div>
                        
                     </div>
                     <div>
-                        <span>Voto:</span>
-                        <i class="fas fa-star" v-for="(item,index) in stars[index]" :key="index"></i>
+                        <span>Voto: </span>
+                        <i class="fas fa-star" v-for="(item,index) in getStars[index]" :key="index"></i>
+                    </div>
+                    <div>
+                        <span>Overview: </span>{{serie.overview}}
                     </div>
                 </div>
             </div>
@@ -56,7 +59,10 @@ export default {
                 return false;
             }
         },
-            getStars(){
+          
+    },
+    computed: {
+          getStars(){
                 this.seriesList.forEach((item)=>{
                     const array = [];
                 for(let i=0; i < (Math.ceil(item.vote_average / 2)); i++){
@@ -64,10 +70,8 @@ export default {
                 }
                 this.stars.push(array);
                 })
-            }
-    },
-    mounted(){
-        this.getStars();
+                return this.stars;
+            },
     }
 }
 </script>
