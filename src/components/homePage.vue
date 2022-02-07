@@ -38,6 +38,30 @@
                 <div class="img-container">
                     <img :src="firstImgPart+film.poster_path">
                 </div>
+                    <div class="film-data">
+                    
+                    <div>
+                        <span>Titolo:</span>{{film.title}}
+                    </div>
+                    <div v-if="checkTitle(film.original_title,film.title)">
+                        <span>Titolo originale:</span>{{film.original_title}}
+                    </div>
+                    <div>
+                        <span>Lingua:</span>
+                        <div class="flag-container">
+                            <img :src="`/flags/${film.original_language}.png`">
+                        </div>
+                       
+                    </div>
+                    <div>
+                        <span>Voto:</span>
+                        <create-stars :film="film"/>
+                    </div>
+                    <div>
+                        <span>Overview: </span>{{film.overview}}
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>
